@@ -1,0 +1,116 @@
+<!-- index.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Zoviyo Earn Qwiz - Intro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="ads.js"></script>
+</head>
+<body>
+  <h1>🎉 Zoviyo Earn Qwiz में आपका स्वागत है!</h1>
+  <p>केवल 2 प्लेयर के बीच General Knowledge (GK) क्विज़ बैटल खेलें और पैसे जीतें!</p>
+  <a href="signup_player.html">प्लेयर साइन अप</a> |
+  <a href="login_owner.html">ओनर लॉगिन</a>
+</body>
+</html><!-- signup_player.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>प्लेयर साइन अप</h2>
+  <form action="setup_player.html">
+    <input type="text" placeholder="नाम" required><br>
+    <input type="email" placeholder="ईमेल" required><br>
+    <input type="submit" value="साइन अप करें">
+  </form>
+</body>
+</html><!-- login_owner.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Owner Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Owner लॉगिन</h2>
+  <form action="setup_owner.html">
+    <input type="text" placeholder="Owner कोड (20)" required><br>
+    <input type="submit" value="लॉगिन">
+  </form>
+</body>
+</html><!-- setup_player.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Setup</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="logic.js"></script>
+</head>
+<body>
+  <h2>अकाउंट सेटअप पूरा!</h2>
+  <p>🎁 ₹20 बोनस वॉलेट में जोड़ा गया है।</p>
+  <a href="match.html">मैच जॉइन करें</a>
+</body>
+</html><!-- setup_owner.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Owner Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Owner Panel</h2>
+  <p>🧑‍💼 Active Users, Wallet Updates, Scores और Winner Data यहाँ दिखेगा</p>
+  <a href="winners.html">विनर हिस्ट्री देखें</a>
+</body>
+</html><!-- match.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Match Page</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="logic.js"></script>
+</head>
+<body>
+  <h2>मैच में जॉइन करें (₹20/₹50/₹100)</h2>
+  <select id="joinAmount">
+    <option value="20">₹20</option>
+    <option value="50">₹50</option>
+    <option value="100">₹100</option>
+  </select>
+  <button onclick="startQuiz()">Start Quiz</button>
+  <div id="quizBox" style="display:none"></div>
+</body>
+</html><!-- result.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="logic.js"></script>
+</head>
+<body>
+  <h2>🎯 रिज़ल्ट</h2>
+  <div id="resultBox"></div>
+  <a href="match.html">फिर से मैच खेलें</a>
+</body>
+</html><!-- winners.html --><!DOCTYPE html><html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Winners History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>🏆 विनर हिस्ट्री</h2>
+  <ul id="winnerList">
+    <!-- स्क्रिप्ट से डाटा आएगा -->
+  </ul>
+</body>
+</html><!-- style.css -->body { font-family: Arial, sans-serif; background: #fff8f2; color: #333; padding: 20px; text-align: center; } input, select, button { padding: 10px; margin: 10px; font-size: 16px; } a { display: inline-block; margin-top: 20px; color: orange; font-weight: bold; }
+
+/* ads.js */ const adCode = <iframe src='https://www.profitableratecpm.com/adbd36a8c953a54af65f6241814f89a2' width='300' height='250' frameborder='0' scrolling='no'></iframe>; document.write(adCode);
+
+<!-- logic.js -->let wallet = 20; let joinAmount = 0; let currentScore = 0;
+
+function startQuiz() { joinAmount = parseInt(document.getElementById('joinAmount').value); if (wallet < joinAmount) { alert("पैसे कम हैं, पहले वॉलेट भरें।"); return; } wallet -= joinAmount; document.getElementById('quizBox').style.display = 'block'; document.getElementById('quizBox').innerHTML = "<p>10 GK Questions लोड हो रहे हैं...</p>"; // Load GK quiz logic }
+
+function showResult() { // Mock score logic const won = Math.random() > 0.5; const resultBox = document.getElementById('resultBox'); if (won) { wallet += joinAmount * 2; resultBox.innerHTML = 🎉 आपने जीत लिया ₹${joinAmount * 2}!; } else { resultBox.innerHTML = "😢 आप हार गए, अगली बार प्रयास करें"; } }
+
+window.onload = function() { if (document.getElementById('resultBox')) showResult(); };
+
